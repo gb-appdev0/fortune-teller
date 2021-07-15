@@ -48,22 +48,44 @@ Rails.application.routes.draw do
   #  - Add some static HTML to mock up the response that you want to send back.
   #  - Write the Ruby to make it dynamic, and work properly.
 
-  # /roll/1/6
-  # /roll/2/6
-  # /roll/3/6
-  # /roll/4/6
-  # /roll/5/6
-  # /roll/6/6
+  num_arr = [1,2,3,4,5,6]
+  size_arr = [6,4,8,10,20]
+  text_num_arr = ["one","two", "three", "four", "five", "six"]
+  text_size_arr = ["six", "four", "eight", "ten", "twenty"]
+  url_arr = []
+  text_arr = []
 
-  # /roll/1/4
-  # /roll/2/4
-  # /roll/3/4
-  # /roll/4/4
-  # /roll/1/8
-  # /roll/2/8
-  # /roll/1/10
-  # /roll/2/10
-  # /roll/1/20
-  # /roll/2/20
+  num_arr.length().times do |a|
+    size_arr.length().times do |b|
+      url_arr.push("/roll/"+num_arr[a].to_s+"/"+size_arr[b].to_s)
+      text_arr.push(text_num_arr[a]+"_"+text_size_arr[b])
+    end
+  end
+
+  
+  get(url_arr, { :controller => "numbers", :action => text_arr })
+
+  # get("/roll/1/6", { :controller => "numbers", :action => "one_six" })
+  # get("/roll/2/6", { :controller => "numbers", :action => "two_six" })
+  # get("/roll/3/6", { :controller => "numbers", :action => "three_six" })
+  # get("/roll/4/6", { :controller => "numbers", :action => "four_six" })
+  # get("/roll/5/6", { :controller => "numbers", :action => "five_six" })
+  # get("/roll/6/6", { :controller => "numbers", :action => "six_six" })
+
+  # get("/roll/1/4", { :controller => "numbers", :action => "one_four" })
+  # get("/roll/2/4", { :controller => "numbers", :action => "two_four" })
+  # get("/roll/3/4", { :controller => "numbers", :action => "three_four" })
+  # get("/roll/4/4", { :controller => "numbers", :action => "four_four" })
+
+  # get("/roll/1/8", { :controller => "numbers", :action => "one_eight" })
+  # get("/roll/2/8", { :controller => "numbers", :action => "two_eight" })
+  # get("/roll/3/8", { :controller => "numbers", :action => "three_eight" })
+
+  # get("/roll/1/10", { :controller => "numbers", :action => "one_ten" })
+  # get("/roll/2/10", { :controller => "numbers", :action => "two_ten" })
+
+  # get("/roll/1/20", { :controller => "numbers", :action => "one_twenty" })
+  # get("/roll/2/20", { :controller => "numbers", :action => "two_twenty" })
+  # get("/roll/3/20", { :controller => "numbers", :action => "three_twenty" })
 
 end
